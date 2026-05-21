@@ -192,7 +192,208 @@
 
 
 /* ============================================================
-   4. HERO PARALLAX
+   4. HERO SCRAMBLE TITLE
+   ============================================================ */
+(function initHeroScramble() {
+  const el = document.getElementById('heroSequence');
+  if (!el) return;
+
+  class TextScramble {
+    constructor(element) {
+      this.el = element;
+      this.chars = '!<>-_\\/[]{}=+*^?#';
+      this.queue = [];
+      this.frame = 0;
+      this.frameRequest = 0;
+      this.resolve = () => {};
+      this.update = this.update.bind(this);
+    }
+
+    setText(newText) {
+      const oldText = this.el.textContent || '';
+      const length = Math.max(oldText.length, newText.length);
+      const promise = new Promise((resolve) => { this.resolve = resolve; });
+      this.queue = [];
+
+      for (let i = 0; i < length; i++) {
+        const from = oldText[i] || '';
+        const to = newText[i] || '';
+        const start = Math.floor(Math.random() * 24);
+        const end = start + Math.floor(Math.random() * 20);
+        this.queue.push({ from, to, start, end });
+      }
+
+      cancelAnimationFrame(this.frameRequest);
+      this.frame = 0;
+      this.update();
+      return promise;
+    }
+
+    update() {
+      let output = '';
+      let complete = 0;
+
+      for (let i = 0; i < this.queue.length; i++) {
+        let { from, to, start, end, char } = this.queue[i];
+
+        if (this.frame >= end) {
+          complete++;
+          output += to;
+        } else if (this.frame >= start) {
+          if (!char || Math.random() < 0.28) {
+            char = this.chars[Math.floor(Math.random() * this.chars.length)];
+            this.queue[i].char = char;
+          }
+          output += `<span class="dud">${char}</span>`;
+        } else {
+          output += from;
+        }
+      }
+
+      this.el.innerHTML = output;
+
+      if (complete === this.queue.length) {
+        this.resolve();
+      } else {
+        this.frameRequest = requestAnimationFrame(this.update);
+        this.frame++;
+      }
+    }
+  }
+
+  const phrases = [
+    {
+      type: 'single',
+      plain: 'SIDX.EDITHOUSE',
+      html: 'SIDX.EDITHOUSE',
+      stacked: false
+    },
+    {
+      type: 'stacked',
+      lines: [
+        { text: 'CRAFTING', accent: false },
+        { text: 'VISUAL', accent: true },
+        { text: 'STORIES', accent: false }
+      ],
+      stacked: true
+    },
+    {
+      type: 'single',
+      plain: "IT'S SITHARTH V N",
+      html: 'IT&apos;S SITHARTH <span class="sequence-accent">V N</span>',
+      stacked: false
+    }
+  ];
+
+  let index = 0;
+
+  const play = () => {
+    const phrase = phrases[index];
+    el.classList.toggle('is-stacked', phrase.stacked);
+
+    if (phrase.type === 'stacked') {
+      el.innerHTML = phrase.lines.map((line) => (
+        `<span class="sequence-line${line.accent ? ' sequence-line--accent' : ''}"></span>`
+      )).join('');
+
+      const lineEls = el.querySelectorAll('.sequence-line');
+      const animations = phrase.lines.map((line, i) => {
+        const lineScrambler = new TextScramble(lineEls[i]);
+        return lineScrambler.setText(line.text);
+      });
+
+      Promise.all(animations).then(() => {
+        window.setTimeout(play, 1800);
+      });
+    } else {
+      el.classList.remove('is-stacked');
+      const scrambler = new TextScramble(el);
+      scrambler.setText(phrase.plain).then(() => {
+        el.innerHTML = phrase.html;
+        window.setTimeout(play, 1800);
+      });
+    }
+
+    index = (index + 1) % phrases.length;
+  };
+
+  play();
+})();
+
+
+/* ============================================================
+   5. HERO LETTER RAIN
+   ============================================================ */
+(function initLetterRain() {
+  const container = document.getElementById('lettersRain');
+  if (!container) return;
+
+  const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+  let chars = [];
+
+  function randomGlyph() {
+    return glyphs[Math.floor(Math.random() * glyphs.length)];
+  }
+
+  function buildChars() {
+    container.innerHTML = '';
+    chars = [];
+
+    const count = window.innerWidth < 480
+      ? 70
+      : window.innerWidth < 768
+        ? 95
+        : 140;
+
+    for (let i = 0; i < count; i++) {
+      const node = document.createElement('span');
+      node.className = 'rain-char';
+      node.textContent = randomGlyph();
+      container.appendChild(node);
+
+      chars.push({
+        node,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        speed: 0.12 + Math.random() * 0.28
+      });
+    }
+  }
+
+  function render() {
+    for (const item of chars) {
+      item.y += item.speed;
+
+      if (item.y > 108) {
+        item.y = -8;
+        item.x = Math.random() * 100;
+        item.node.textContent = randomGlyph();
+      }
+
+      item.node.style.left = `${item.x}%`;
+      item.node.style.top = `${item.y}%`;
+    }
+
+    requestAnimationFrame(render);
+  }
+
+  function flicker() {
+    chars.forEach((item, index) => {
+      const active = index % 17 === Math.floor(Math.random() * 17) || Math.random() > 0.97;
+      item.node.classList.toggle('active', active);
+      if (Math.random() > 0.93) item.node.textContent = randomGlyph();
+    });
+  }
+
+  buildChars();
+  window.addEventListener('resize', buildChars);
+  window.setInterval(flicker, 120);
+  render();
+})();
+
+
+/* ============================================================
+   6. HERO PARALLAX
    ============================================================ */
 (function initParallax() {
   const heroVisual = document.getElementById('heroVisual');
@@ -224,7 +425,7 @@
 
 
 /* ============================================================
-   5. COUNTER ANIMATION
+   7. COUNTER ANIMATION
    ============================================================ */
 (function initCounters() {
   const counters = document.querySelectorAll('[data-count]');
@@ -263,7 +464,7 @@
 
 
 /* ============================================================
-   6. SCROLL REVEAL
+   8. SCROLL REVEAL
    ============================================================ */
 (function initScrollReveal() {
   const revealEls = document.querySelectorAll(
@@ -293,7 +494,7 @@
 
 
 /* ============================================================
-   7. WORKS GRID — stagger reveal + filter
+   9. WORKS GRID — stagger reveal + filter
    ============================================================ */
 (function initWorks() {
   const cards = document.querySelectorAll('.work-card');
@@ -315,6 +516,23 @@
   cards.forEach((card, i) => {
     card.style.transitionDelay = `${i * 80}ms`;
     observer.observe(card);
+  });
+
+  // Make linked work cards open external project URLs.
+  cards.forEach(card => {
+    const url = card.getAttribute('data-url');
+    if (!url) return;
+
+    const openProject = () => {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    };
+
+    card.addEventListener('click', openProject);
+    card.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      openProject();
+    });
   });
 
   // Filter functionality
@@ -349,7 +567,7 @@
 
 
 /* ============================================================
-   8. CONTACT FORM — validation + WhatsApp redirect
+   10. CONTACT FORM — validation + WhatsApp redirect
    ============================================================ */
 (function initForm() {
   const form    = document.getElementById('contactForm');
@@ -443,7 +661,7 @@
 
 
 /* ============================================================
-   9. SMOOTH SCROLL — polyfill for older browsers
+   11. SMOOTH SCROLL — polyfill for older browsers
    ============================================================ */
 (function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -458,7 +676,7 @@
 
 
 /* ============================================================
-   10. WORK CARD TILT on hover
+   12. WORK CARD TILT on hover
    ============================================================ */
 (function initCardTilt() {
   const cards = document.querySelectorAll('.work-card');
@@ -480,7 +698,7 @@
 
 
 /* ============================================================
-   11. ABOUT CARD TILT
+   13. ABOUT CARD TILT
    ============================================================ */
 (function initAboutCardTilt() {
   document.querySelectorAll('.about-card').forEach(card => {

@@ -49,26 +49,15 @@
       <div class="light-streak streak-1"></div>
       <div class="light-streak streak-2"></div>
       <div class="light-streak streak-3"></div>
+      <div class="hero-letters-layer" id="lettersRain" aria-hidden="true"></div>
       <canvas id="particleCanvas" aria-hidden="true"></canvas>
     </div>
 
     <div class="hero-container">
-      <!-- Left Content -->
       <div class="hero-content">
-        <div class="hero-tag" aria-label="Role">
-          <span class="tag-dot"></span>
-          Cinematic Video Editor
-        </div>
-
         <h1 class="hero-title">
-          <span class="title-line" data-text="CRAFTING">CRAFTING</span>
-          <span class="title-line title-line--accent" data-text="VISUAL">VISUAL</span>
-          <span class="title-line" data-text="STORIES">STORIES</span>
+          <span class="hero-sequence scramble-text" id="heroSequence" aria-live="polite">SIDX.EDITHOUSE</span>
         </h1>
-
-        <p class="hero-sub">
-          Professional editor specializing in YouTube videos, reels, cinematic edits, and wedding films — with <strong>5 years of experience</strong> shaping emotion through motion.
-        </p>
 
         <div class="hero-buttons">
           <a href="#works" class="btn btn-primary" aria-label="View my works">
@@ -80,56 +69,7 @@
             <span class="btn-text">Contact Me</span>
           </a>
         </div>
-
-        <div class="hero-stats" aria-label="Key statistics">
-          <div class="stat">
-            <span class="stat-num" data-count="5">0</span><span class="stat-plus">+</span>
-            <span class="stat-label">Years</span>
-          </div>
-          <div class="stat-divider" aria-hidden="true"></div>
-          <div class="stat">
-            <span class="stat-num" data-count="120">0</span><span class="stat-plus">+</span>
-            <span class="stat-label">Projects</span>
-          </div>
-          <div class="stat-divider" aria-hidden="true"></div>
-          <div class="stat">
-            <span class="stat-num" data-count="40">0</span><span class="stat-plus">+</span>
-            <span class="stat-label">Clients</span>
-          </div>
-        </div>
       </div>
-
-      <!-- Right: Visual / Image Frame -->
-      <div class="hero-visual" id="heroVisual" aria-label="Editor portrait visual">
-        <div class="visual-frame">
-          <div class="frame-ring frame-ring--outer"></div>
-          <div class="frame-ring frame-ring--inner"></div>
-          <div class="visual-placeholder" aria-label="Professional portrait image">
-            <img src="hero.png" alt="Hero section image" class="hero-image" />
-          </div>
-          <div class="visual-glow"></div>
-          <!-- Corner decorations -->
-          <div class="corner corner-tl" aria-hidden="true"></div>
-          <div class="corner corner-tr" aria-hidden="true"></div>
-          <div class="corner corner-bl" aria-hidden="true"></div>
-          <div class="corner corner-br" aria-hidden="true"></div>
-        </div>
-        <!-- Floating badges -->
-        <div class="float-badge badge-1" aria-label="Available for projects badge">
-          <span class="badge-pulse"></span>
-          Available for projects
-        </div>
-        <div class="float-badge badge-2" aria-label="Tools badge">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#8B5CF6" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          Premiere Pro · DaVinci
-        </div>
-      </div>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="scroll-indicator" aria-hidden="true">
-      <div class="scroll-line"></div>
-      <span>Scroll</span>
     </div>
   </section>
 
@@ -229,86 +169,25 @@
       <!-- Portfolio Grid -->
       <div class="works-grid" id="worksGrid" role="list" aria-label="Portfolio projects">
 
-        <article class="work-card" data-cat="youtube" role="listitem" tabindex="0" aria-label="YouTube Growth Series project">
+        <article class="work-card" data-cat="social" data-url="https://www.instagram.com/reel/DFTIgECSz_C/?utm_source=ig_web_copy_link&amp;igsh=MzRlODBiNWFlZA==" role="link" tabindex="0" aria-label="Open Instagram reel: Social campaign cut project">
           <div class="work-thumb">
             <div class="thumb-placeholder" data-num="01" aria-hidden="true">
-              <svg viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="60" height="40" fill="#0a0a0f"/><circle cx="30" cy="20" r="10" fill="#8B5CF6" opacity="0.3"/><polygon points="27,15 37,20 27,25" fill="#8B5CF6"/></svg>
-            </div>
-            <div class="work-overlay">
-              <div class="overlay-icon" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg>
-              </div>
-              <span class="overlay-label">View Project</span>
-            </div>
-          </div>
-          <div class="work-info">
-            <span class="work-cat">YouTube Editing</span>
-            <h3 class="work-title">Growth Series — Tech Channel</h3>
-          </div>
-          <div class="work-num" aria-hidden="true">01</div>
-        </article>
-
-        <article class="work-card work-card--tall" data-cat="cinematic" role="listitem" tabindex="0" aria-label="Cinematic short film project">
-          <div class="work-thumb">
-            <div class="thumb-placeholder" data-num="02" aria-hidden="true">
-              <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="60" height="60" fill="#0a0a0f"/><rect x="5" y="10" width="50" height="40" rx="3" fill="#8B5CF6" opacity="0.15" stroke="#8B5CF6" stroke-width="0.5"/><line x1="0" y1="18" x2="60" y2="18" stroke="#8B5CF6" stroke-width="0.5" opacity="0.5"/><line x1="0" y1="42" x2="60" y2="42" stroke="#8B5CF6" stroke-width="0.5" opacity="0.5"/></svg>
-            </div>
-            <div class="work-overlay">
-              <div class="overlay-icon" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg>
-              </div>
-              <span class="overlay-label">View Project</span>
-            </div>
-          </div>
-          <div class="work-info">
-            <span class="work-cat">Cinematic Video</span>
-            <h3 class="work-title">Urban Cinematic — Short Film</h3>
-          </div>
-          <div class="work-num" aria-hidden="true">02</div>
-        </article>
-
-        <article class="work-card" data-cat="wedding" role="listitem" tabindex="0" aria-label="Wedding highlight film project">
-          <div class="work-thumb">
-            <div class="thumb-placeholder" data-num="03" aria-hidden="true">
-              <svg viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="60" height="40" fill="#0a0a0f"/><path d="M30 20 C30 20 20 10 15 15 C10 20 20 30 30 20Z" fill="#8B5CF6" opacity="0.4"/><path d="M30 20 C30 20 40 10 45 15 C50 20 40 30 30 20Z" fill="#8B5CF6" opacity="0.4"/></svg>
-            </div>
-            <div class="work-overlay">
-              <div class="overlay-icon" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg>
-              </div>
-              <span class="overlay-label">View Project</span>
-            </div>
-          </div>
-          <div class="work-info">
-            <span class="work-cat">Wedding Highlights</span>
-            <h3 class="work-title">Eternal Moments — Wedding Film</h3>
-          </div>
-          <div class="work-num" aria-hidden="true">03</div>
-        </article>
-
-        <article class="work-card" data-cat="reels" role="listitem" tabindex="0" aria-label="Brand reels project">
-          <div class="work-thumb">
-            <div class="thumb-placeholder" data-num="04" aria-hidden="true">
-              <svg viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="60" height="40" fill="#0a0a0f"/><circle cx="30" cy="20" r="14" stroke="#8B5CF6" stroke-width="0.5" opacity="0.5"/><circle cx="30" cy="20" r="8" stroke="#8B5CF6" stroke-width="0.5"/><line x1="16" y1="20" x2="44" y2="20" stroke="#8B5CF6" stroke-width="0.5" opacity="0.4"/><line x1="30" y1="6" x2="30" y2="34" stroke="#8B5CF6" stroke-width="0.5" opacity="0.4"/></svg>
-            </div>
-            <div class="work-overlay">
-              <div class="overlay-icon" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg>
-              </div>
-              <span class="overlay-label">View Project</span>
-            </div>
-          </div>
-          <div class="work-info">
-            <span class="work-cat">Reels Editing</span>
-            <h3 class="work-title">Brand Story — Viral Reels Pack</h3>
-          </div>
-          <div class="work-num" aria-hidden="true">04</div>
-        </article>
-
-        <article class="work-card work-card--wide" data-cat="social" role="listitem" tabindex="0" aria-label="Social media campaign project">
-          <div class="work-thumb">
-            <div class="thumb-placeholder" data-num="05" aria-hidden="true">
-              <svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="80" height="40" fill="#0a0a0f"/><rect x="5" y="8" width="30" height="24" rx="2" fill="#8B5CF6" opacity="0.2"/><rect x="45" y="8" width="30" height="24" rx="2" fill="#8B5CF6" opacity="0.1"/><circle cx="20" cy="20" r="6" fill="#8B5CF6" opacity="0.5"/><circle cx="60" cy="20" r="6" stroke="#8B5CF6" stroke-width="1" opacity="0.5"/></svg>
+              <svg viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="socialThumb" x1="8" y1="4" x2="52" y2="36" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#F97316"/>
+                    <stop offset="0.45" stop-color="#EF4444"/>
+                    <stop offset="1" stop-color="#8B5CF6"/>
+                  </linearGradient>
+                </defs>
+                <rect width="60" height="40" rx="0" fill="#0a0a0f"/>
+                <rect x="6" y="4" width="48" height="32" rx="5" fill="url(#socialThumb)" opacity="0.9"/>
+                <rect x="10" y="8" width="17" height="24" rx="3" fill="#11131a" opacity="0.9"/>
+                <circle cx="39" cy="14" r="5" fill="#ffffff" opacity="0.18"/>
+                <rect x="31" y="23" width="16" height="3" rx="1.5" fill="#ffffff" opacity="0.32"/>
+                <rect x="31" y="28" width="11" height="2.5" rx="1.25" fill="#ffffff" opacity="0.22"/>
+                <polygon points="18,16 18,24 24,20" fill="#ffffff" opacity="0.85"/>
+              </svg>
             </div>
             <div class="work-overlay">
               <div class="overlay-icon" aria-hidden="true">
@@ -319,15 +198,29 @@
           </div>
           <div class="work-info">
             <span class="work-cat">Social Media Ads</span>
-            <h3 class="work-title">Campaign Launch — E-commerce Brand</h3>
+            <h3 class="work-title">Product Push — Instagram Promo Cut</h3>
           </div>
-          <div class="work-num" aria-hidden="true">05</div>
+          <div class="work-num" aria-hidden="true">01</div>
         </article>
 
-        <article class="work-card" data-cat="youtube" role="listitem" tabindex="0" aria-label="Podcast visuals project">
+        <article class="work-card" data-cat="cinematic" data-url="https://www.instagram.com/reel/DP6W75gEuwL/?utm_source=ig_web_copy_link&amp;igsh=MzRlODBiNWFlZA==" role="link" tabindex="0" aria-label="Open Instagram reel: Cinematic mood reel project">
           <div class="work-thumb">
-            <div class="thumb-placeholder" data-num="06" aria-hidden="true">
-              <svg viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="60" height="40" fill="#0a0a0f"/><path d="M10 30 Q20 10 30 20 Q40 30 50 10" stroke="#8B5CF6" stroke-width="1.5" fill="none" opacity="0.8"/></svg>
+            <div class="thumb-placeholder" data-num="02" aria-hidden="true">
+              <svg viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="cineThumb" x1="8" y1="6" x2="46" y2="34" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#1D4ED8"/>
+                    <stop offset="0.5" stop-color="#0F172A"/>
+                    <stop offset="1" stop-color="#F59E0B"/>
+                  </linearGradient>
+                </defs>
+                <rect width="60" height="40" fill="#08090d"/>
+                <rect x="5" y="5" width="50" height="30" rx="4" fill="url(#cineThumb)"/>
+                <circle cx="16" cy="14" r="5" fill="#ffffff" opacity="0.16"/>
+                <path d="M7 31 C14 24 21 24 28 30 C34 25 40 22 53 28 V35 H7 Z" fill="#05070b" opacity="0.85"/>
+                <path d="M23 31 C25 26 30 23 35 23 C39 23 42 25 44 28 L46 35 H20 Z" fill="#111827" opacity="0.8"/>
+                <polygon points="30,14 30,24 38,19" fill="#ffffff" opacity="0.82"/>
+              </svg>
             </div>
             <div class="work-overlay">
               <div class="overlay-icon" aria-hidden="true">
@@ -337,43 +230,15 @@
             </div>
           </div>
           <div class="work-info">
-            <span class="work-cat">YouTube Editing</span>
-            <h3 class="work-title">Podcast Visuals — Storytelling Series</h3>
+            <span class="work-cat">Cinematic Video</span>
+            <h3 class="work-title">Mood Frame — Cinematic Reel Edit</h3>
           </div>
-          <div class="work-num" aria-hidden="true">06</div>
+          <div class="work-num" aria-hidden="true">02</div>
         </article>
 
       </div>
     </div>
   </section>
-
-  <!-- ============ MARQUEE ============ -->
-  <div class="marquee-section" aria-hidden="true">
-    <div class="marquee-track">
-      <div class="marquee-content">
-        <span>YouTube Editing</span><span class="marquee-dot">●</span>
-        <span>Wedding Films</span><span class="marquee-dot">●</span>
-        <span>Reels & Shorts</span><span class="marquee-dot">●</span>
-        <span>Cinematic Video</span><span class="marquee-dot">●</span>
-        <span>Social Media Ads</span><span class="marquee-dot">●</span>
-        <span>Color Grading</span><span class="marquee-dot">●</span>
-        <span>Motion Graphics</span><span class="marquee-dot">●</span>
-        <span>Premiere Pro</span><span class="marquee-dot">●</span>
-        <span>DaVinci Resolve</span><span class="marquee-dot">●</span>
-      </div>
-      <div class="marquee-content" aria-hidden="true">
-        <span>YouTube Editing</span><span class="marquee-dot">●</span>
-        <span>Wedding Films</span><span class="marquee-dot">●</span>
-        <span>Reels & Shorts</span><span class="marquee-dot">●</span>
-        <span>Cinematic Video</span><span class="marquee-dot">●</span>
-        <span>Social Media Ads</span><span class="marquee-dot">●</span>
-        <span>Color Grading</span><span class="marquee-dot">●</span>
-        <span>Motion Graphics</span><span class="marquee-dot">●</span>
-        <span>Premiere Pro</span><span class="marquee-dot">●</span>
-        <span>DaVinci Resolve</span><span class="marquee-dot">●</span>
-      </div>
-    </div>
-  </div>
 
   <!-- ============ CONTACT SECTION ============ -->
   <section class="contact section" id="contact" aria-label="Contact section">
@@ -501,3 +366,6 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+
+
