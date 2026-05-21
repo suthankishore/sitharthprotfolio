@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sithartn VN — Cinematic Video Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- Noise overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo" aria-label="Sithartn VN - Home">
+        <span class="logo-s">S</span><span class="logo-rest">ithartn VN</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#works" class="nav-link" aria-label="View Works">Works</a></li>
+        <li><a href="#about" class="nav-link" aria-label="About Me">About</a></li>
+        <li><a href="#contact" class="nav-link" aria-label="Contact Me">Contact</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO SECTION ============ -->
+  <section class="hero" id="hero" aria-label="Hero section">
+    <!-- Animated background elements -->
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="light-streak streak-1"></div>
+      <div class="light-streak streak-2"></div>
+      <div class="light-streak streak-3"></div>
+      <canvas id="particleCanvas" aria-hidden="true"></canvas>
+    </div>
+
+    <div class="hero-container">
+      <!-- Left Content -->
+      <div class="hero-content">
+        <div class="hero-tag" aria-label="Role">
+          <span class="tag-dot"></span>
+          Cinematic Video Editor
+        </div>
+
+        <h1 class="hero-title">
+          <span class="title-line" data-text="CRAFTING">CRAFTING</span>
+          <span class="title-line title-line--accent" data-text="VISUAL">VISUAL</span>
+          <span class="title-line" data-text="STORIES">STORIES</span>
+        </h1>
+
+        <p class="hero-sub">
+          Professional editor specializing in YouTube videos, reels, cinematic edits, and wedding films — with <strong>5 years of experience</strong> shaping emotion through motion.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#works" class="btn btn-primary" aria-label="View my works">
+            <span class="btn-text">View Works</span>
+            <span class="btn-glow"></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-ghost" aria-label="Contact me">
+            <span class="btn-text">Contact Me</span>
+          </a>
+        </div>
+
+        <div class="hero-stats" aria-label="Key statistics">
+          <div class="stat">
+            <span class="stat-num" data-count="5">0</span><span class="stat-plus">+</span>
+            <span class="stat-label">Years</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat">
+            <span class="stat-num" data-count="120">0</span><span class="stat-plus">+</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat">
+            <span class="stat-num" data-count="40">0</span><span class="stat-plus">+</span>
+            <span class="stat-label">Clients</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Visual / Image Frame -->
+      <div class="hero-visual" id="heroVisual" aria-label="Editor portrait visual">
+        <div class="visual-frame">
+          <div class="frame-ring frame-ring--outer"></div>
+          <div class="frame-ring frame-ring--inner"></div>
+          <div class="visual-placeholder" aria-label="Professional portrait placeholder">
+            <div class="placeholder-inner">
+              <!-- Camera SVG icon as placeholder -->
+              <svg class="placeholder-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="40" cy="40" r="39" stroke="#8B5CF6" stroke-width="1" stroke-dasharray="4 4"/>
+                <rect x="16" y="28" width="48" height="34" rx="4" stroke="#8B5CF6" stroke-width="1.5"/>
+                <circle cx="40" cy="45" r="9" stroke="#a78bfa" stroke-width="1.5"/>
+                <circle cx="40" cy="45" r="5" fill="#8B5CF6" opacity="0.6"/>
+                <rect x="28" y="22" width="10" height="6" rx="2" stroke="#8B5CF6" stroke-width="1.5"/>
+                <circle cx="56" cy="34" r="2" fill="#8B5CF6"/>
+              </svg>
+              <p class="placeholder-hint">Place your photo here</p>
+            </div>
+          </div>
+          <div class="visual-glow"></div>
+          <!-- Corner decorations -->
+          <div class="corner corner-tl" aria-hidden="true"></div>
+          <div class="corner corner-tr" aria-hidden="true"></div>
+          <div class="corner corner-bl" aria-hidden="true"></div>
+          <div class="corner corner-br" aria-hidden="true"></div>
+        </div>
+        <!-- Floating badges -->
+        <div class="float-badge badge-1" aria-label="Available for projects badge">
+          <span class="badge-pulse"></span>
+          Available for projects
+        </div>
+        <div class="float-badge badge-2" aria-label="Tools badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#8B5CF6" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Premiere Pro · DaVinci
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT SECTION ============ -->
+  <section class="about section" id="about" aria-label="About section">
+    <div class="container">
+      <div class="about-grid">
+
+        <!-- Left: Image -->
+        <div class="about-image-wrap reveal-left">
+          <div class="about-img-frame">
+            <div class="about-placeholder" aria-label="About portrait placeholder">
+              <svg class="placeholder-icon-sm" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="30" cy="20" r="10" stroke="#8B5CF6" stroke-width="1.5"/>
+                <path d="M10 52c0-11 8-18 20-18s20 7 20 18" stroke="#8B5CF6" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <p class="placeholder-hint">Your photo</p>
+            </div>
+            <div class="about-img-glow"></div>
+          </div>
+          <!-- Decorative elements -->
+          <div class="about-decor decor-1" aria-hidden="true">5+</div>
+          <div class="about-decor decor-2" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#8B5CF6" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+        </div>
+
+        <!-- Right: Content -->
+        <div class="about-content reveal-right">
+          <div class="section-tag">Who I am</div>
+          <h2 class="section-heading">About <span class="text-purple">Me</span></h2>
+
+          <p class="about-desc">
+            I'm <strong>Sithartn VN</strong>, a passionate video editor with 5 years of experience creating engaging YouTube content, cinematic reels, wedding films, and social media visuals. I focus on storytelling, smooth transitions, emotional visuals, and premium editing experiences that help brands and creators stand out.
+          </p>
+
+          <!-- Highlight cards -->
+          <div class="about-cards" role="list" aria-label="Skills and specializations">
+            <div class="about-card" role="listitem" tabindex="0">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <strong>5+ Years</strong>
+                <span>Experience</span>
+              </div>
+            </div>
+            <div class="about-card" role="listitem" tabindex="0">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div>
+                <strong>YouTube</strong>
+                <span>Editing</span>
+              </div>
+            </div>
+            <div class="about-card" role="listitem" tabindex="0">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <div>
+                <strong>Wedding</strong>
+                <span>Films</span>
+              </div>
+            </div>
+            <div class="about-card" role="listitem" tabindex="0">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </div>
+              <div>
+                <strong>Reels</strong>
+                <span>&amp; Shorts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORKS SECTION ============ -->
+  <section class="works section" id="works" aria-label="Portfolio works section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-tag">Portfolio</div>
+        <h2 class="section-heading">My <span class="text-purple">Works</span></h2>
+        <p class="section-sub">Selected cinematic edits and creative projects.</p>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="works-filter" role="tablist" aria-label="Filter projects by category">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-filter="youtube" role="tab" aria-selected="false">YouTube</button>
+        <button class="filter-btn" data-filter="reels" role="tab" aria-selected="false">Reels</button>
+        <button class="filter-btn" data-filter="wedding" role="tab" aria-selected="false">Wedding</button>
+        <button class="filter-btn" data-filter="cinematic" role="tab" aria-selected="false">Cinematic</button>
+        <button class="filter-btn" data-filter="social" role="tab" aria-selected="false">Social</button>
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div class="works-grid" id="worksGrid" role="list" aria-label="Portfolio projects">
+
+        <article class="work-card" data-cat="youtube" role="listitem" tabindex="0" aria-label="YouTube Growth Series project">
+          <div class="work-thumb">
+            <div class="thumb-placeholder" data-num="01" aria-hidden="true">
+              <svg viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="60" height="40" fill="#0a0a0f"/><circle cx="30" cy="20" r="10" fill="#8B5CF6" opacity="0.3"/><polygon points="27,15 37,20 27,25" fill="#8B5CF6"/></svg>
+            </div>
+            <div class="work-overlay">
+              <div class="overlay-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg>
+              </div>
+              <span class="overlay-label">View Project</span>
+            </div>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">YouTube Editing</span>
+            <h3 class="work-title">Growth Series — Tech Channel</h3>
+          </div>
+          <div class="work-num" aria-hidden="true">01</div>
+        </article>
+
+        <article class="work-card work-card--tall" data-cat="cinematic" role="listitem" tabindex="0" aria-label="Cinematic short film project">
+          <div class="work-thumb">
+            <div class="thumb-placeholder" data-num="02" aria-hidden="true">
+              <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="60" height="60" fill="#0a0a0f"/><rect x="5" y="10" width="50" height="40" rx="3" fill="#8B5CF6" opacity="0.15" stroke="#8B5CF6" stroke-width="0.5"/><line x1="0" y1="18" x2="60" y2="18" stroke="#8B5CF6" stroke-width="0.5" opacity="0.5"/><line x1="0" y1="42" x2="60" y2="42" stroke="#8B5CF6" stroke-width="0.5" opacity="0.5"/></svg>
+            </div>
+            <div class="work-overlay">
+              <div class="overlay-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg>
+              </div>
+              <span class="overlay-label">View Project</span>
+            </div>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">Cinematic Video</span>
+            <h3 class="work-title">Urban Cinematic — Short Film</h3>
+          </div>
+          <div class="work-num" aria-hidden="true">02</div>
+        </article>
+
+        <article class="work-card" data-cat="wedding" role="listitem" tabindex="0" aria-label="Wedding highlight film project">
+          <div class="work-thumb">
+            <div class="thumb-placeholder" data-num="03" aria-hidden="true">
+              <svg viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="60" height="40" fill="#0a0a0f"/><path d="M30 20 C30 20 20 10 15 15 C10 20 20 30 30 20Z" fill="#8B5CF6" opacity="0.4"/><path d="M30 20 C30 20 40 10 45 15 C50 20 40 30 30 20Z" fill="#8B5CF6" opacity="0.4"/></svg>
+            </div>
+            <div class="work-overlay">
+              <div class="overlay-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg>
+              </div>
+              <span class="overlay-label">View Project</span>
+            </div>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">Wedding Highlights</span>
+            <h3 class="work-title">Eternal Moments — Wedding Film</h3>
+          </div>
+          <div class="work-num" aria-hidden="true">03</div>
+        </article>
+
+        <article class="work-card" data-cat="reels" role="listitem" tabindex="0" aria-label="Brand reels project">
+          <div class="work-thumb">
+            <div class="thumb-placeholder" data-num="04" aria-hidden="true">
+              <svg viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="60" height="40" fill="#0a0a0f"/><circle cx="30" cy="20" r="14" stroke="#8B5CF6" stroke-width="0.5" opacity="0.5"/><circle cx="30" cy="20" r="8" stroke="#8B5CF6" stroke-width="0.5"/><line x1="16" y1="20" x2="44" y2="20" stroke="#8B5CF6" stroke-width="0.5" opacity="0.4"/><line x1="30" y1="6" x2="30" y2="34" stroke="#8B5CF6" stroke-width="0.5" opacity="0.4"/></svg>
+            </div>
+            <div class="work-overlay">
+              <div class="overlay-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg>
+              </div>
+              <span class="overlay-label">View Project</span>
+            </div>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">Reels Editing</span>
+            <h3 class="work-title">Brand Story — Viral Reels Pack</h3>
+          </div>
+          <div class="work-num" aria-hidden="true">04</div>
+        </article>
+
+        <article class="work-card work-card--wide" data-cat="social" role="listitem" tabindex="0" aria-label="Social media campaign project">
+          <div class="work-thumb">
+            <div class="thumb-placeholder" data-num="05" aria-hidden="true">
+              <svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="80" height="40" fill="#0a0a0f"/><rect x="5" y="8" width="30" height="24" rx="2" fill="#8B5CF6" opacity="0.2"/><rect x="45" y="8" width="30" height="24" rx="2" fill="#8B5CF6" opacity="0.1"/><circle cx="20" cy="20" r="6" fill="#8B5CF6" opacity="0.5"/><circle cx="60" cy="20" r="6" stroke="#8B5CF6" stroke-width="1" opacity="0.5"/></svg>
+            </div>
+            <div class="work-overlay">
+              <div class="overlay-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg>
+              </div>
+              <span class="overlay-label">View Project</span>
+            </div>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">Social Media Ads</span>
+            <h3 class="work-title">Campaign Launch — E-commerce Brand</h3>
+          </div>
+          <div class="work-num" aria-hidden="true">05</div>
+        </article>
+
+        <article class="work-card" data-cat="youtube" role="listitem" tabindex="0" aria-label="Podcast visuals project">
+          <div class="work-thumb">
+            <div class="thumb-placeholder" data-num="06" aria-hidden="true">
+              <svg viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="60" height="40" fill="#0a0a0f"/><path d="M10 30 Q20 10 30 20 Q40 30 50 10" stroke="#8B5CF6" stroke-width="1.5" fill="none" opacity="0.8"/></svg>
+            </div>
+            <div class="work-overlay">
+              <div class="overlay-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="white"/></svg>
+              </div>
+              <span class="overlay-label">View Project</span>
+            </div>
+          </div>
+          <div class="work-info">
+            <span class="work-cat">YouTube Editing</span>
+            <h3 class="work-title">Podcast Visuals — Storytelling Series</h3>
+          </div>
+          <div class="work-num" aria-hidden="true">06</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee-section" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-content">
+        <span>YouTube Editing</span><span class="marquee-dot">●</span>
+        <span>Wedding Films</span><span class="marquee-dot">●</span>
+        <span>Reels & Shorts</span><span class="marquee-dot">●</span>
+        <span>Cinematic Video</span><span class="marquee-dot">●</span>
+        <span>Social Media Ads</span><span class="marquee-dot">●</span>
+        <span>Color Grading</span><span class="marquee-dot">●</span>
+        <span>Motion Graphics</span><span class="marquee-dot">●</span>
+        <span>Premiere Pro</span><span class="marquee-dot">●</span>
+        <span>DaVinci Resolve</span><span class="marquee-dot">●</span>
+      </div>
+      <div class="marquee-content" aria-hidden="true">
+        <span>YouTube Editing</span><span class="marquee-dot">●</span>
+        <span>Wedding Films</span><span class="marquee-dot">●</span>
+        <span>Reels & Shorts</span><span class="marquee-dot">●</span>
+        <span>Cinematic Video</span><span class="marquee-dot">●</span>
+        <span>Social Media Ads</span><span class="marquee-dot">●</span>
+        <span>Color Grading</span><span class="marquee-dot">●</span>
+        <span>Motion Graphics</span><span class="marquee-dot">●</span>
+        <span>Premiere Pro</span><span class="marquee-dot">●</span>
+        <span>DaVinci Resolve</span><span class="marquee-dot">●</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CONTACT SECTION ============ -->
+  <section class="contact section" id="contact" aria-label="Contact section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left: Info -->
+        <div class="contact-info reveal-left">
+          <div class="section-tag">Let's Talk</div>
+          <h2 class="section-heading">Let's Work <span class="text-purple">Together</span></h2>
+          <p class="contact-desc">Have a project in mind? Let's create something cinematic. I'd love to hear about your vision.</p>
+
+          <div class="contact-items" role="list">
+            <a href="https://wa.me/918300183837" class="contact-item" role="listitem" aria-label="WhatsApp: +91 83001 83837" target="_blank" rel="noopener noreferrer">
+              <div class="contact-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#8B5CF6" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+              </div>
+              <div>
+                <span class="contact-label">WhatsApp</span>
+                <span class="contact-value">+91 83001 83837</span>
+              </div>
+            </a>
+
+            <a href="https://www.instagram.com/sidx.edithouse" class="contact-item" role="listitem" aria-label="Instagram: sidx.edithouse" target="_blank" rel="noopener noreferrer">
+              <div class="contact-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </div>
+              <div>
+                <span class="contact-label">Instagram</span>
+                <span class="contact-value">@sidx.edithouse</span>
+              </div>
+            </a>
+
+            <div class="contact-item" role="listitem" aria-label="LinkedIn placeholder">
+              <div class="contact-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </div>
+              <div>
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-value">Sithartn VN</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="contact-form-wrap reveal-right">
+          <form class="contact-form" id="contactForm" novalidate aria-label="Contact form">
+            <div class="form-group">
+              <label for="name" class="form-label">Your Name</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" autocomplete="name" required aria-required="true" />
+              <span class="form-error" id="nameError" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="hello@email.com" autocomplete="email" required aria-required="true" />
+              <span class="form-error" id="emailError" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="project" class="form-label">Project Type</label>
+              <select id="project" name="project" class="form-input form-select" required aria-required="true">
+                <option value="" disabled selected>Select project type</option>
+                <option value="YouTube Editing">YouTube Editing</option>
+                <option value="Reels & Shorts">Reels &amp; Shorts</option>
+                <option value="Wedding Film">Wedding Film</option>
+                <option value="Cinematic Video">Cinematic Video</option>
+                <option value="Social Media Ads">Social Media Ads</option>
+                <option value="Other">Other</option>
+              </select>
+              <span class="form-error" id="projectError" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Your Message</label>
+              <textarea id="message" name="message" class="form-input form-textarea" placeholder="Tell me about your project..." rows="4" required aria-required="true"></textarea>
+              <span class="form-error" id="messageError" role="alert" aria-live="polite"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full" aria-label="Send project via WhatsApp">
+              <span class="btn-text">Send Project</span>
+              <span class="btn-glow"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+
+            <!-- Success message -->
+            <div class="form-success" id="formSuccess" role="status" aria-live="polite" aria-atomic="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Message sent! Redirecting to WhatsApp...
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" aria-label="Footer">
+    <div class="footer-glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="#hero" class="footer-logo" aria-label="Back to top">
+          <span class="logo-s">S</span><span class="logo-rest">ithartn VN</span>
+        </a>
+
+        <div class="footer-socials" aria-label="Social media links">
+          <a href="https://www.instagram.com/sidx.edithouse" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/918300183837" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+
+        <p class="footer-copy">&copy; 2025 Sithartn VN. All rights reserved. Crafted with passion.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
